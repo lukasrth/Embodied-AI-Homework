@@ -1,0 +1,22 @@
+﻿# Python
+__pycache__/
+*.pyc
+.env
+.venv/
+*.egg-info/
+
+# Visual Studio / Windows
+.vscode/
+Thumbs.db
+
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+
+# build outputs
+build/
+dist/
