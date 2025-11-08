@@ -96,7 +96,7 @@
 
 \section{Preperation (Point Clouds)}
 
-Generating the point cloud from the files in fruit.zip proves to be a very long task. The pipeline was as follows: first the feature extraction happens (this took 13 minutes in google colab), then the feature matching begins (google colab was too slow to finish this part and I was not able to follow through)
+Generating the point cloud from the files in fruit.zip proves to be a very long task. The pipeline was as follows: first the feature extraction happens (this took 13 minutes in google colab), i.e. the program finds the interesting features in the individual images. Then the feature matching begins (google colab was too slow to finish this part and I was not able to follow through), where features across different images are identified, linking their matches. There should also be a last step (I could not get to with google colab), where the program attempts to reconstruct the original object from the now matched features in the form of a mesh.     
 
 
 
