@@ -57,7 +57,7 @@ __device__ float3 computeCov2D(const float3& mean, float focal_x, float focal_y,
 	);
 
 	// Rotate covariance into camera frame and propagate through projection
-	glm::mat3 T = W * sigma * glm::transpose(W);
+	glm::mat3 T = glm::transpose(W) * sigma * W;
 	glm::mat3 cov = J * T * glm::transpose(J);
 
 	// End Code 2.4

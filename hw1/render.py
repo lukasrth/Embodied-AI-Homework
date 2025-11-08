@@ -129,7 +129,9 @@ def render_sets(args):
         
         ### Begin Code 3.2 ###
         print("Number of gaussians before pruning: ", gaussians.get_xyz.shape[0])
-        gaussians.prune_points(min_opacity=0.001)
+        # Increase the pruning threshold so low-opacity Gaussians are actually removed.
+        # If your model still doesn't change, try raising this value further (e.g. 0.05).
+        gaussians.prune_points(min_opacity=0.01)
         print("Number of gaussians after pruning: ", gaussians.get_xyz.shape[0])
         ### End code 3.2 ###
         
