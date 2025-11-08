@@ -123,8 +123,9 @@ class GaussianModel:
         self._scaling = nn.Parameter(torch.tensor(scales, dtype=torch.float, device="cuda").requires_grad_(True))
         self._rotation = nn.Parameter(torch.tensor(rots, dtype=torch.float, device="cuda").requires_grad_(True))
 
-    def prune_points(self,min_opacity=0.0):
+    def prune_points(self,min_opacity=0.5):
         ## Begin code 3.2 ##
+        print("min_opacity",min_opacity)
         # todo: compute a mask of points with opacity < min_opacity, and remove them from the model.
 
         with torch.no_grad():
