@@ -43,15 +43,22 @@ __device__ float3 computeCov2D(const float3& mean, float focal_x, float focal_y,
 		viewmatrix[2], viewmatrix[6], viewmatrix[10]);
 
 	// Begin Code 2.4
-	// glm::mat3 J = glm::mat3(???)  
-	// glm::mat3 T= ???
-	// glm::mat3 cov=???
+	// Begin Code 2.4
+	// Build linearized projection Jacobian (maps 3D camera coords -> pixels)
+	float sx = focal_x / tan_fovx;
+	float sy = focal_y / tan_fovy;
+	float iz = 1.0f / t.z;
+	float iz2 = iz * iz;
 
-	// placeholder
-	glm::mat3 cov = glm::mat3(
-		1,0,0,
-		0,1,0,
-		0,0,1);
+	glm::mat3 J = glm::mat3(
+		sx * iz,      0.0f, -sx * t.x * iz2,
+		0.0f,      sy * iz, -sy * t.y * iz2,
+		0.0f,         0.0f,            1.0f
+	);
+
+	// Rotate covariance into camera frame and propagate through projection
+	glm::mat3 sigma_cam = W * sigma * glm::transpose(W);
+	glm::mat3 cov = J * sigma_cam * glm::transpose(J);
 
 	// End Code 2.4
 

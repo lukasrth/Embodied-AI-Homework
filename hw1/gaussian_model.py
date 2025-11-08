@@ -71,11 +71,10 @@ class GaussianModel:
         q= self.get_rotation # rotation quaternion
         ## Begin code 2.1 ##
         # todo: build 3dgs covariance matrix. Equation (6) of 3dgs paper.
-        # R = ???(q)
-        # S = torch.diag_embed(???)
-        # L = ???
-        
-        L=torch.eye(3).unsqueeze(0).repeat(self._xyz.shape[0],1,1) # placeholder, please remove this line
+        R = build_rotmat_from_quat(q)  # (N,3,3)
+        S = torch.diag_embed(scaling_modifier * s)  # (N,3,3)
+        # L such that covariance = L @ L^T
+        L = R @ S
         ## End code 2.1 ##
         
         actual_covariance = L @ L.transpose(1, 2)
