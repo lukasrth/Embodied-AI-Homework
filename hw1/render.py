@@ -129,7 +129,7 @@ def render_sets(args):
         
         ### Begin Code 3.2 ###
         print("Number of gaussians before pruning: ", gaussians.get_xyz.shape[0])
-        gaussians.prune_points(min_opacity=0.5)
+        gaussians.prune_points(min_opacity=0.001)
         print("Number of gaussians after pruning: ", gaussians.get_xyz.shape[0])
         ### End code 3.2 ###
         
