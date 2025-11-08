@@ -1,0 +1,104 @@
+\documentclass{scrartcl}    % To have more options like subtitle etc.
+\usepackage[T1]{fontenc}    % Make sure german "Umlaute" and "ß" are copied properly from result .pdf
+%\graphicspath{{images/}}    % Default image path
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{makeidx}
+\usepackage{mathrsfs}
+\usepackage{nomencl}
+\usepackage{braket}       % or \usepackage{physics}
+
+\usepackage[backend=biber,
+            style=authoryear,
+            hyperref=true,
+            backref=true]{biblatex}
+\addbibresource{LV_BA.bib} 
+\setlength\bibitemsep{1em} % Adjust the spacing as needed
+\usepackage{setspace}       % For line spacing
+\onehalfspacing             % Set line spacing to 1.5x
+\usepackage[a4paper,        % Adjust margins
+            left=2.5cm,     % Left margin
+            right=2.5cm,    % Right margin
+            top=2.5cm,      % Top margin
+            bottom=4.0cm]{geometry} % Bottom margin
+
+
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {\bibhyperref{\printnames{labelname}~(\printdate)}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% Optionally patch \parencite as well
+\DeclareCiteCommand{\parencite}
+  {\usebibmacro{prenote}}
+  {\bibhyperref{(\printnames{labelname},~\printdate)}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}% Index setup
+
+\AtEveryCitekey{\clearfield{month}}% 
+
+\usepackage{bm}
+\usepackage{pdfpages}       % Include whole pdfs
+\usepackage{siunitx}        % Formatting SI units
+% Default per-mode
+\sisetup{
+  per-mode=fraction,
+  separate-uncertainty = true,
+  table-align-uncertainty = true,
+  detect-weight = true,
+  detect-family = true
+}
+%\sisetup{locale = DE}       % Correct decimal marker etc.
+\DeclareSIUnit\litre{l}     % Lowercase l for litre
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = blue,    % Colour of internal links
+  citecolor    = blue      % Colour of citations
+}
+\usepackage{multirow}     % Multirow tables
+\usepackage{float}        % Move figures with [H]
+\usepackage[version=4]{mhchem} % Chemical formulas
+\usepackage{amsfonts}     % Math fonts
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\usepackage{fancyhdr}
+
+\newcommand{\studentname}{Lukas Riethm\"uller}
+\newcommand{\studentid}{2025403370}
+\newcommand{\hwNumber}{1}
+
+\pagestyle{fancy}
+\fancyhf{}                             % clear header/footer
+\lhead{Embodied AI\\ Homework Nr. \hwNumber}       % top-left
+\rhead{\studentname\\ \studentid}     % top-right (two lines)
+\renewcommand{\headrulewidth}{0.4pt}   % header rule thickness
+\setlength{\headheight}{14pt}          
+
+%\makeindex
+
+%Später wieder anschalten
+
+%\usepackage{lastpage}
+%\usepackage{scrlayer-scrpage}
+%\cfoot{\thepage\ von \pageref*{LastPage}} % Seite x von y; * entfernt Hyperlink
+
+\begin{document}    
+
+\section*{Setting up}
+
+%include picture from intitial render
+
+\section{Preperation (Point Clouds)}
+
+Generating the point cloud from the files in fruit.zip proves to be a very long task. The pipeline was as follows: first the feature extraction happens (this took 13 minutes in google colab), then the feature matching begins (google colab was too slow to finish this part and I was not able to follow through)
+
+
+
+
+\end{document}
