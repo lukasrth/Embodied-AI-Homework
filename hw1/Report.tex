@@ -179,6 +179,88 @@ To have a confident cover use the largest semi axis for the squared cover:
 \]
 where \(\sigma_x=\sqrt{\Sigma_{11}}\) and \(\sigma_y=\sqrt{\Sigma_{22}}\).
 
+\section{Better Rendering}
+
+In figure \ref{fig:renders-comparison} we can see the results of the rendering with 0th and 1st degree spherical harmonics. I cannot make out a difference with my eyes, possibly I made a mistake when implementing the gaussian splatting (I did flag sh\_degree 1).
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{renders/render2.4/00000.png}
+    \vspace{0.5em}
+
+    {\small (a) SH of degree 0}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{renders/render 3.1/00000.png}
+    \vspace{0.5em}
+
+    {\small (b) SH of degree 1}
+  \end{minipage}
+
+  \vspace{0.8em}
+
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{renders/render2.4/00002.png}
+    \vspace{0.5em}
+
+    {\small (c) SH of degree 0}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{renders/render 3.1/00002.png}
+    \vspace{0.5em}
+
+    {\small (d) SH of degree 1}
+  \end{minipage}
+
+  \caption{Left column with 0th degree spherical harmonics (SH), right column with 1st degree SH}
+  \label{fig:renders-comparison}
+\end{figure}
+
+In the next step we implement opacity-based-pruning, the resulting effects vor various opacity threshholds can be seen in figure \ref{fig:opacity-renders}. While a minimum opacity of 0.01 has no visual difference (roughly 8\% of gaussians were filtered), 0.1 starts removing significant amounts that do not introduce noticeable defects (36\% of gaussians filtered), while values of 0.5 and higher introduce considerable defects.
+
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{renders/Opacity .999 true/00001.png}
+    \vspace{0.5em}
+
+    {\small (a) Minimal opacity of 0.999}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{renders/Opacity 0.5 true/00001.png}
+    \vspace{0.5em}
+
+    {\small (b) Minimal opacity of 0.5}
+  \end{minipage}
+
+  \vspace{0.8em}
+
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{renders/Opacity 0.1 true/00001.png}
+    \vspace{0.5em}
+
+    {\small (c) Minimal opacity of 0.1}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{renders/Opacity 0.01 true/00001.png}
+    \vspace{0.5em}
+
+    {\small (d) Minimal opacity of 0.01}
+  \end{minipage}
+
+  \caption{Renders with varying opacity levels (top-left: 0.999, top-right: 0.5, bottom-left: 0.1, bottom-right: 0.01).}
+  \label{fig:opacity-renders}
+\end{figure}
 
 
 \end{document}
