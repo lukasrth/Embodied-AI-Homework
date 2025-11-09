@@ -85,8 +85,8 @@ def render(viewpoint_camera, pc : GaussianModel, bg_color : torch.Tensor, scalin
     print("DEBUG: #points (pc):", pc.get_xyz.shape)
     print("DEBUG: opacities: min/max/mean:", pc.get_opacity.min().item(), pc.get_opacity.max().item(), pc.get_opacity.mean().item())
     cov3D_precomp = pc.get_covariance(scaling_modifier)
-    print("DEBUG: cov3D_precomp shape:", cov3D_precomp.shape)
-    print("DEBUG: colors_precomp shape (after SH):", colors_precomp.shape)
+    #print("DEBUG: cov3D_precomp shape:", cov3D_precomp.shape)
+    #print("DEBUG: colors_precomp shape (after SH):", colors_precomp.shape)
     # Precompute colors.
     shs = None
     shs_view = pc.get_features.transpose(1, 2).view(-1, 3, (pc.max_sh_degree+1)**2)
@@ -134,10 +134,10 @@ def render_sets(args):
         print("Number of gaussians before pruning: ", gaussians.get_xyz.shape[0])
         # Increase the pruning threshold so low-opacity Gaussians are actually removed.
         # If your model still doesn't change, try raising this value further (e.g. 0.05).
-        gaussians.prune_points(min_opacity=0.05)
+        gaussians.prune_points(min_opacity=0.00)
 
         print("Number of gaussians after pruning: ", gaussians.get_xyz.shape[0])
-        print("After prune, #gaussians:", gaussians.get_xyz.shape[0])
+        #print("After prune, #gaussians:", gaussians.get_xyz.shape[0])
         ### End code 3.2 ###
         
         bg_color = [0, 0, 0] # Black background for our scene
