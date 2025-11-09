@@ -92,12 +92,26 @@
 
 \section*{Setting up}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{renders/render0/00000.png}
+  \caption{Initial render of the reconstructed mesh.}
+  \label{fig:initial-render}
+\end{figure}
 %include picture from intitial render
 
 \section{Preperation (Point Clouds)}
 
 Generating the point cloud from the files in fruit.zip proves to be a very long task. The pipeline was as follows: first the feature extraction happens (this took 13 minutes in google colab), i.e. the program finds the interesting features in the individual images. Then the feature matching begins (google colab was too slow to finish this part and I was not able to follow through), where features across different images are identified, linking their matches. There should also be a last step (I could not get to with google colab), where the program attempts to reconstruct the original object from the now matched features in the form of a mesh.\\
-The next task is to visualize an already processed mesh with open3D, the results are seen in this figure:
+The next task is to visualize an already processed mesh with open3D, the results are seen in  figure \ref{fig:mesh}:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{results/pointcloud_1.jpg}
+  \caption{Processed mesh with open3D}
+  \label{fig:mesh}
+\end{figure}
+
 %include screenshot
 
 \section{Building Gaussian Primitives}
@@ -164,5 +178,7 @@ To have a confident cover use the largest semi axis for the squared cover:
     \;\approx\; 6.069708\;\max(\sigma_x,\sigma_y),
 \]
 where \(\sigma_x=\sqrt{\Sigma_{11}}\) and \(\sigma_y=\sqrt{\Sigma_{22}}\).
+
+
 
 \end{document}
